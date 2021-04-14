@@ -27,6 +27,14 @@ spec:
       - image: owensun/mmv2-currency-exchange-service:0.0.1-SNAPSHOT
         imagePullPolicy: IfNotPresent
         name: mmv2-currency-exchange-service
+        readinessProbe:
+          httpGet:
+            port: 8000
+            path: /actuator/health/readiness
+        livenessProbe:
+          httpGet:
+            port: 8000
+            path: /actuator/health/liveness            
       restartPolicy: Always
 ---
 apiVersion: v1
